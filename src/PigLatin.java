@@ -16,37 +16,38 @@ import java.util.Scanner;
 public class PigLatin {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        final String VOWELS = "aeiouAEIOU";
         String result;
         String userWord;
-
+        String choice = "y";
         //Display welcome message and prompt for word from user
-        System.out.println("Welcome! Let's learn pig latin.");
-        System.out.println("Enter a word to be translated: ");
-        userWord = scan.nextLine();
+        System.out.println("Welcome to the pig latin translator!");
 
-        //Translate user input
-        //convert to lowercase before translating
-        userWord = userWord.toLowerCase();
+        while (choice.equalsIgnoreCase("y")) {
+            System.out.println("Enter a word to be translated: ");
+            userWord = scan.nextLine();
 
-        //isVowel will only word for one word to do sentence need to look at string split
-        if (isVowel(userWord)) {
-            //vowels
-            result = translateWithVowel(userWord);
-        } else {
-            //consonants
-            result = translateWithConsonant(userWord);
+            //convert to lowercase before translating
+            userWord = userWord.toLowerCase();
+
+            //isVowel will only work for one word translations
+            if (isVowel(userWord)) {
+                //vowels method
+                result = translateWithVowel(userWord);
+            } else {
+                //consonants method
+                result = translateWithConsonant(userWord);
+            }
+            //print out result
+            System.out.println("Pig latin translation: " + result);
+
+            //Play again?
+            System.out.println("\nWould you like to translate another word? (y/n)");
+            choice = scan.nextLine();
         }
-
-        //print out result
-        System.out.println(result);
-
-        //Play again?
-
+        System.out.println("Good luck with your pig latin! Good bye.");
     }
 
     //Translates word starting with a consonant
-    //TODO
     public static String translateWithConsonant(String userWord) {
         int wordLength = userWord.length();
         int firstVowelFound = 0;
@@ -57,31 +58,24 @@ public class PigLatin {
             if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
 
                 firstVowelFound = i;
+                break; //without this break the last vowel is moved to the beginning
             }
-
         }
-
         String startString = userWord.substring(firstVowelFound, wordLength);
         String movedString = userWord.substring(0, firstVowelFound);
 
         userWord = startString + movedString + "ay";
 
-
         return userWord;
     }
-
     //Translates word starting with a vowel pig latin logic
-
     public static String translateWithVowel(String userWord) {
 
         userWord = userWord.concat("way");
 
         return userWord;
     }
-
-
     //Determines if a word starts with a vowel or consonant
-
     public static boolean isVowel(String userWord) {
         if (userWord.charAt(0) == 'a' || userWord.charAt(0) == 'e' ||
                 userWord.charAt(0) == 'i' || userWord.charAt(0) == 'o' ||
