@@ -2,16 +2,7 @@ import java.util.Scanner;
 
 /**
  * Created by Steve on 6/30/2017.
- * 1. Display welcome message and prompt user for word
- * 2. Get user input
- * 3. Translate that word to pig latin
- * 4. Display result
- * 5. Prompt user to continue with loop
- * <p>
- * Extra
- * take that process and translate two words -- eventually whole string
- * validate that only letters get translated
- * validate keeping case of word
+ * Pig latin translator. Take user input and translate the word to pig latin.
  */
 public class PigLatin {
     public static void main(String[] args) {
@@ -19,8 +10,9 @@ public class PigLatin {
         String result;
         String userWord;
         String choice = "y";
+
         //Display welcome message and prompt for word from user
-        System.out.println("Welcome to the pig latin translator!");
+        System.out.println("Welcome to the pig latin translator!\n");
 
         while (choice.equalsIgnoreCase("y")) {
             System.out.println("Enter a word to be translated: ");
@@ -37,10 +29,10 @@ public class PigLatin {
                 //consonants method
                 result = translateWithConsonant(userWord);
             }
-            //print out result
+
             System.out.println("Pig latin translation: " + result);
 
-            //Play again?
+
             System.out.println("\nWould you like to translate another word? (y/n)");
             choice = scan.nextLine();
         }
@@ -54,11 +46,11 @@ public class PigLatin {
 
         //take all consonants up to the first vowel...How do i get program to stop at vowel?
         for (int i = 0; i < wordLength; i++) {
-            char c = userWord.charAt(i);
-            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') {
+            char v = userWord.charAt(i);
+            if (v == 'a' || v == 'e' || v == 'i' || v == 'o' || v == 'u') {
 
                 firstVowelFound = i;
-                break; //without this break the last vowel is moved to the beginning
+                break; //without this break the last vowel is moved to the beginning and word becomes scrambled
             }
         }
         String startString = userWord.substring(firstVowelFound, wordLength);
@@ -68,6 +60,7 @@ public class PigLatin {
 
         return userWord;
     }
+
     //Translates word starting with a vowel pig latin logic
     public static String translateWithVowel(String userWord) {
 
@@ -75,11 +68,11 @@ public class PigLatin {
 
         return userWord;
     }
+
     //Determines if a word starts with a vowel or consonant
     public static boolean isVowel(String userWord) {
-        if (userWord.charAt(0) == 'a' || userWord.charAt(0) == 'e' ||
-                userWord.charAt(0) == 'i' || userWord.charAt(0) == 'o' ||
-                userWord.charAt(0) == 'u') {
+        char s = userWord.charAt(0);
+        if (s == 'a' || s == 'e' || s == 'i' || s == 'o' || s == 'u') {
             return true;
         } else {
             return false;
