@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 /**
  * Created by Steve on 6/30/2017.
- * Pig latin translator. Take user input and translate the word to pig latin.
+ * Pig latin translator. Take user input and translate the phrase to pig latin.
  */
 public class PigLatin {
     public static void main(String[] args) {
@@ -10,7 +10,7 @@ public class PigLatin {
         String[] result = new String[50]; //had issues with scope when I didn't define array size
         String userPhrase;
         String choice = "y";
-        
+
         //Display welcome message and prompt for word from user
         System.out.println("Welcome to the pig latin translator!\n");
 
